@@ -1,0 +1,12 @@
+.header{
+    background-color: #4234C0
+}
+
+.header__content{
+    max-width: 1200px;
+    padding: 2rem;
+    margin: auto;
+    background-color: red;
+    display: flex;
+    justify-content: space-between;
+}
