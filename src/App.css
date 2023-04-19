@@ -11,9 +11,13 @@ body{
 }
 
 .root{
-  background-color: red;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 5rem 1fr;
   min-height: 100svh;
+  margin: auto;
 }
+
+
+
+
 
