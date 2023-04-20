@@ -3,7 +3,7 @@ import quantitySlice from './QuantitySlice';
 
 const store = configureStore({
   reducer: {
-    quantity: quantitySlice,
+    quantity: quantitySlice.reducer,
   },
 });
 

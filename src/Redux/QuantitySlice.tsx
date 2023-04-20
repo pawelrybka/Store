@@ -1,26 +1,33 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface QuantityState {
-  value: number;
+interface QuantitySlice {
+  [productId: number]: number;
 }
 
-const initialState: QuantityState = {
-  value: 0,
-};
+const initialState: QuantitySlice = {};
 
-export const quantitySlice = createSlice({
+const quantitySlice = createSlice({
   name: 'quantity',
   initialState,
   reducers: {
-    increase: state => {
-      state.value += 1;
+    increase: (state, action: PayloadAction<number>) => {
+      const productId = action.payload;
+      if (state[productId] !== undefined) {
+        state[productId] += 1;
+      } else {
+        state[productId] = 1;
+      }
     },
-    decrease: state => {
-      state.value -= 1;
+    decrease: (state, action: PayloadAction<number>) => {
+      const productId = action.payload;
+      if (state[productId] !== undefined && state[productId] > 0) {
+        state[productId] -= 1;
+      }
     },
   },
 });
 
 export const { increase, decrease } = quantitySlice.actions;
 
-export default quantitySlice.reducer;
+export default quantitySlice;
+

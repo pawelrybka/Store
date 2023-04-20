@@ -1,13 +1,11 @@
-import Footer from '../Footer/Footer'
 import { useState, useEffect } from 'react';
-import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
-import { MdOutlineKeyboardArrowUp } from 'react-icons/md';
-import { useDispatch } from 'react-redux';
-import { increase, decrease } from '../../Redux/QuantitySlice';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../Redux/Store';
+import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md';
 import LoadingSpinner from '../../UI/LoadingSpinner/LoadingSpinner';
+import Footer from '../Footer/Footer'
 import styles from './Main.module.css'
+import { increase, decrease } from '../../Redux/QuantitySlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../Redux/Store';
 
 interface Products {
   category: string
@@ -21,9 +19,9 @@ function Main() {
   
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState<Products[]>([])
-  const dispatch = useDispatch()
-  const quantityValue = useSelector((state: any) => state.quantity.value);
-
+  const quantities = useSelector((state: RootState) => state.quantity);
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     async function fetchData() {
       const response = await fetch('https://fakestoreapi.com/products');
@@ -34,13 +32,13 @@ function Main() {
     fetchData()
   }, []);
 
-  const handleIncrease = () => {
-    dispatch(increase());
-  }
+  const handleIncrease = (productId: number) => {
+    dispatch(increase(productId));
+  };
 
-  const handleDecrease = () => {
-    dispatch(decrease());
-  }
+  const handleDecrease = (productId: number) => {
+    dispatch(decrease(productId));
+  };
 
   return (
     <div className={styles.main}>
@@ -62,9 +60,15 @@ function Main() {
                   </div>
                 </div>
                 <div className={styles.product__quantity}>
-                  <MdOutlineKeyboardArrowUp size={30} onClick={() => handleIncrease()}/>
-                    {quantityValue}
-                  <MdOutlineKeyboardArrowDown size={30} onClick={() => handleDecrease()}/>
+                  <MdOutlineKeyboardArrowUp 
+                    size={30}
+                    onClick={() => handleIncrease(product.id)} 
+                  />
+                    <p>{quantities[product.id] ?? 0}</p>
+                  <MdOutlineKeyboardArrowDown 
+                    size={30}
+                    onClick={() => handleDecrease(product.id)} 
+                  />
                 </div>
               </div>
             ))
