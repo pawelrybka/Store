@@ -3,8 +3,8 @@ import styles from './Footer.module.css'
 function Footer() {
   return (
     <div className={styles.footer}>
-        <span>Footer</span>
-        <span>20</span>
+        <span>Total:</span>
+        <span>0$</span>
     </div>
   )
 }
