@@ -2,6 +2,10 @@ import Footer from '../Footer/Footer'
 import { useState, useEffect } from 'react';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import { MdOutlineKeyboardArrowUp } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
+import { increase, decrease } from '../../Redux/QuantitySlice';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../Redux/Store';
 import LoadingSpinner from '../../UI/LoadingSpinner/LoadingSpinner';
 import styles from './Main.module.css'
 
@@ -17,6 +21,8 @@ function Main() {
   
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState<Products[]>([])
+  const dispatch = useDispatch()
+  const quantityValue = useSelector((state: any) => state.quantity.value);
 
   useEffect(() => {
     async function fetchData() {
@@ -27,6 +33,14 @@ function Main() {
     }
     fetchData()
   }, []);
+
+  const handleIncrease = () => {
+    dispatch(increase());
+  }
+
+  const handleDecrease = () => {
+    dispatch(decrease());
+  }
 
   return (
     <div className={styles.main}>
@@ -48,9 +62,9 @@ function Main() {
                   </div>
                 </div>
                 <div className={styles.product__quantity}>
-                  <MdOutlineKeyboardArrowUp size={30}/>
-                    0
-                  <MdOutlineKeyboardArrowDown size={30}/>
+                  <MdOutlineKeyboardArrowUp size={30} onClick={() => handleIncrease()}/>
+                    {quantityValue}
+                  <MdOutlineKeyboardArrowDown size={30} onClick={() => handleDecrease()}/>
                 </div>
               </div>
             ))
