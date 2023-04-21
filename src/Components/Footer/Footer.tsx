@@ -8,10 +8,7 @@ function Footer() {
   return (
     <div className={styles.footer}>
       <span>Total:</span>
-      <span>
-        {total.toFixed(2)}
-        $
-      </span>
+      <span>{total.toFixed(2)}$</span>
     </div>
   );
 }

@@ -5,7 +5,10 @@ import styles from './Header.module.css';
 
 function Header() {
   const quantities = useSelector((state: RootState) => state.quantity);
-  const totalQuantity = Object.values(quantities).reduce((acc, curr) => acc + curr, 0);
+  const totalQuantity = Object.values(quantities).reduce(
+    (acc, curr) => acc + curr,
+    0
+  );
 
   return (
     <div className={styles.header}>

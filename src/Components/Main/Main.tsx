@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
-import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md';
+import {
+  MdOutlineKeyboardArrowDown,
+  MdOutlineKeyboardArrowUp,
+} from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingSpinner from '../../UI/LoadingSpinner/LoadingSpinner';
 import Footer from '../Footer/Footer';
@@ -9,11 +12,11 @@ import { addToCart, removeFromCart } from '../../Redux/TotalPriceSlice';
 import { RootState } from '../../Redux/Store';
 
 interface Products {
-  category: string
-  description: string
-  id: number
-  image: string
-  price: number
+  category: string;
+  description: string;
+  id: number;
+  image: string;
+  price: number;
 }
 
 function Main() {
@@ -46,9 +49,10 @@ function Main() {
     <div className={styles.main}>
       <div className={styles.main__content}>
         <div className={styles.content}>
-          {loading
-            ? <LoadingSpinner />
-            : products.map((product) => (
+          {loading ? (
+            <LoadingSpinner />
+          ) : (
+            products.map((product) => (
               <div key={product.id} className={styles.product}>
                 <div className={styles.product__info}>
                   <img
@@ -58,10 +62,7 @@ function Main() {
                   />
                   <div>
                     <h3>{product.category}</h3>
-                    <p>
-                      {product.price}
-                      $
-                    </p>
+                    <p>{product.price}$</p>
                   </div>
                 </div>
                 <div className={styles.product__quantity}>
@@ -76,7 +77,8 @@ function Main() {
                   />
                 </div>
               </div>
-            ))}
+            ))
+          )}
         </div>
         <Footer />
       </div>
