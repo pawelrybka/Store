@@ -30,4 +30,3 @@ const quantitySlice = createSlice({
 export const { increase, decrease } = quantitySlice.actions;
 
 export default quantitySlice;
-

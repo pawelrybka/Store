@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import quantitySlice from './QuantitySlice';
-import cartSlice from './TotalPriceSlice'
+import cartSlice from './TotalPriceSlice';
 
 const store = configureStore({
   reducer: {
@@ -12,4 +12,3 @@ const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>;
 
 export default store;
-
