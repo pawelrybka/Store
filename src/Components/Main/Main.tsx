@@ -4,6 +4,7 @@ import LoadingSpinner from '../../UI/LoadingSpinner/LoadingSpinner';
 import Footer from '../Footer/Footer'
 import styles from './Main.module.css'
 import { increase, decrease } from '../../Redux/QuantitySlice';
+import { addToCart, removeFromCart } from '../../Redux/TotalPriceSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../Redux/Store';
 
@@ -32,12 +33,14 @@ function Main() {
     fetchData()
   }, []);
 
-  const handleIncrease = (productId: number) => {
-    dispatch(increase(productId));
+  const handleIncrease = (product: Products) => {
+    dispatch(increase(product.id));
+    dispatch(addToCart({ price: product.price }));
   };
-
-  const handleDecrease = (productId: number) => {
-    dispatch(decrease(productId));
+  
+  const handleDecrease = (product: Products) => {
+    dispatch(decrease(product.id));
+    dispatch(removeFromCart({ price: product.price }));
   };
 
   return (
@@ -62,12 +65,12 @@ function Main() {
                 <div className={styles.product__quantity}>
                   <MdOutlineKeyboardArrowUp 
                     size={30}
-                    onClick={() => handleIncrease(product.id)} 
+                    onClick={() => handleIncrease(product)} 
                   />
                     <p>{quantities[product.id] ?? 0}</p>
                   <MdOutlineKeyboardArrowDown 
                     size={30}
-                    onClick={() => handleDecrease(product.id)} 
+                    onClick={() => handleDecrease(product)} 
                   />
                 </div>
               </div>
