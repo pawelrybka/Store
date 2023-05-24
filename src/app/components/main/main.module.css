@@ -1,0 +1,16 @@
+.main {
+  background-color: purple;
+}
+
+.main__content {
+  background-color: aquamarine;
+  max-width: 1000px;
+  margin: auto;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 5rem;
+}
+
+.content {
+  padding: 1rem;
+}
