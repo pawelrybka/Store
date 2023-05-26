@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Footer from '../footer/footer';
 import styles from './main.module.css';
-import { Product } from '@/app/types';
+import { Product } from '@/types';
 import {
   MdOutlineKeyboardArrowDown,
   MdOutlineKeyboardArrowUp,
