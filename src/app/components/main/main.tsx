@@ -1,5 +1,4 @@
 import Footer from '../footer/footer';
-
 import styles from './main.module.css';
 
 function main() {
@@ -9,7 +8,6 @@ function main() {
         <div className={styles.content}>
           <h3>Main</h3>
         </div>
-
         <Footer />
       </div>
     </div>
